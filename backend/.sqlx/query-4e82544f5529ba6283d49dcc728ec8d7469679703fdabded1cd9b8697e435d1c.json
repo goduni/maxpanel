@@ -1,0 +1,193 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT\n            b.id as bot_id, b.project_id, b.name as bot_name,\n            b.access_token_enc, b.access_token_nonce, b.key_version,\n            b.event_mode as \"event_mode: EventMode\",\n            b.webhook_secret, b.webhook_url, b.polling_marker,\n            b.is_active, b.history_limit, b.max_bot_id, b.max_bot_info,\n            b.created_at as bot_created_at, b.updated_at as bot_updated_at,\n            p.organization_id, p.name as project_name, p.slug as project_slug,\n            o.id as org_id, o.name as org_name, o.slug as org_slug,\n            om.role as \"org_role: Option<crate::models::OrgRole>\",\n            pm.role as \"proj_role: Option<crate::models::ProjectRole>\"\n           FROM bots b\n           JOIN projects p ON p.id = b.project_id\n           JOIN organizations o ON o.id = p.organization_id\n           LEFT JOIN organization_members om ON om.organization_id = o.id AND om.user_id = $2\n           LEFT JOIN project_members pm ON pm.project_id = p.id AND pm.user_id = $2\n           WHERE b.id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "bot_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "project_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 2,
+        "name": "bot_name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "access_token_enc",
+        "type_info": "Bytea"
+      },
+      {
+        "ordinal": 4,
+        "name": "access_token_nonce",
+        "type_info": "Bytea"
+      },
+      {
+        "ordinal": 5,
+        "name": "key_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "event_mode: EventMode",
+        "type_info": {
+          "Custom": {
+            "name": "event_mode",
+            "kind": {
+              "Enum": [
+                "webhook",
+                "polling"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 7,
+        "name": "webhook_secret",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 8,
+        "name": "webhook_url",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 9,
+        "name": "polling_marker",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 10,
+        "name": "is_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 11,
+        "name": "history_limit",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 12,
+        "name": "max_bot_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 13,
+        "name": "max_bot_info",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 14,
+        "name": "bot_created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 15,
+        "name": "bot_updated_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 16,
+        "name": "organization_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 17,
+        "name": "project_name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 18,
+        "name": "project_slug",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 19,
+        "name": "org_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 20,
+        "name": "org_name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 21,
+        "name": "org_slug",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 22,
+        "name": "org_role: Option<crate::models::OrgRole>",
+        "type_info": {
+          "Custom": {
+            "name": "org_role",
+            "kind": {
+              "Enum": [
+                "owner",
+                "admin",
+                "member"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 23,
+        "name": "proj_role: Option<crate::models::ProjectRole>",
+        "type_info": {
+          "Custom": {
+            "name": "project_role",
+            "kind": {
+              "Enum": [
+                "admin",
+                "editor",
+                "viewer"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "4e82544f5529ba6283d49dcc728ec8d7469679703fdabded1cd9b8697e435d1c"
+}

@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE bots SET access_token_enc = $2, access_token_nonce = $3 WHERE id = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Bytea",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "cd55f8c880b6ae274a123a03873ad338bc020d3603e3aaa8351ab0ed9ccdc418"
+}

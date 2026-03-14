@@ -1,0 +1,27 @@
+# Secrets
+.env
+
+# Backend
+backend/target
+backend/docs
+
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/.next
+
+# Generated
+swagger.json
+
+# Docs (generated specs/plans)
+docs/
+
+# Claude
+.claude/
+CLAUDE.md
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo

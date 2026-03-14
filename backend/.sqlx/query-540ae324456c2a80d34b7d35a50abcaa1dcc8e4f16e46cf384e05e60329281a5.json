@@ -1,0 +1,27 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO project_members (project_id, user_id, role)\n           VALUES ($1, $2, $3)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid",
+        {
+          "Custom": {
+            "name": "project_role",
+            "kind": {
+              "Enum": [
+                "admin",
+                "editor",
+                "viewer"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "540ae324456c2a80d34b7d35a50abcaa1dcc8e4f16e46cf384e05e60329281a5"
+}

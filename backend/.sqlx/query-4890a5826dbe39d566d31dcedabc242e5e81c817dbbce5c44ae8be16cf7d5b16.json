@@ -1,0 +1,63 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT om.organization_id, om.user_id, om.role as \"role: OrgRole\", om.created_at,\n                  u.name as \"user_name: Option<String>\", u.email as \"user_email: Option<String>\"\n           FROM organization_members om\n           LEFT JOIN users u ON u.id = om.user_id\n           WHERE om.organization_id = $1\n           ORDER BY om.created_at",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "organization_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "user_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 2,
+        "name": "role: OrgRole",
+        "type_info": {
+          "Custom": {
+            "name": "org_role",
+            "kind": {
+              "Enum": [
+                "owner",
+                "admin",
+                "member"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 4,
+        "name": "user_name: Option<String>",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "user_email: Option<String>",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "4890a5826dbe39d566d31dcedabc242e5e81c817dbbce5c44ae8be16cf7d5b16"
+}

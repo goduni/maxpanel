@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT role as \"role: ProjectRole\" FROM project_members\n           WHERE project_id = $1 AND user_id = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "role: ProjectRole",
+        "type_info": {
+          "Custom": {
+            "name": "project_role",
+            "kind": {
+              "Enum": [
+                "admin",
+                "editor",
+                "viewer"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "9f9b68cccb39becf8322a1d9a75496a3a569abedc1fdcce863c2ba5906d327a4"
+}

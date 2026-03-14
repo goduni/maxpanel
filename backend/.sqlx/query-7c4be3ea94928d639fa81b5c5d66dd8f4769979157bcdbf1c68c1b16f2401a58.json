@@ -1,0 +1,88 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, project_id, name, event_mode as \"event_mode: EventMode\",\n                  is_active, history_limit, max_bot_id, max_bot_info, created_at, updated_at\n           FROM bots WHERE project_id = $1\n           ORDER BY created_at DESC\n           LIMIT $2 OFFSET $3",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "project_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 2,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "event_mode: EventMode",
+        "type_info": {
+          "Custom": {
+            "name": "event_mode",
+            "kind": {
+              "Enum": [
+                "webhook",
+                "polling"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "is_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 5,
+        "name": "history_limit",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "max_bot_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 7,
+        "name": "max_bot_info",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 8,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Int8",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "7c4be3ea94928d639fa81b5c5d66dd8f4769979157bcdbf1c68c1b16f2401a58"
+}

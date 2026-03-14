@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT COUNT(*) as \"count!\" FROM projects p\n           JOIN project_members pm ON pm.project_id = p.id\n           WHERE p.organization_id = $1 AND pm.user_id = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "count!",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "0b8427a2e74be969b46246a815d30f49c4ca3c820cd19795dccefeb5cf8f2472"
+}

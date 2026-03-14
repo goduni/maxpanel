@@ -1,0 +1,65 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT bot_id, chat_id, chat_type, title, icon_url, participants,\n                          last_event_at, synced_at\n                   FROM bot_chats\n                   WHERE bot_id = $1\n                   ORDER BY COALESCE(last_event_at, synced_at) DESC, chat_id DESC\n                   LIMIT $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "bot_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "chat_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "chat_type",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "title",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "icon_url",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "participants",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "last_event_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 7,
+        "name": "synced_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ]
+  },
+  "hash": "5c5290ad10a68d6fa41ac5d8f4b2dbe7b88cab3e9c94cc7f1e78a1eb9e1b8c85"
+}

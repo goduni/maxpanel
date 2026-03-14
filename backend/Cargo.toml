@@ -1,0 +1,65 @@
+[package]
+name = "max-dashboard-backend"
+version = "0.1.0"
+edition = "2024"
+license = "BSL-1.1"
+
+[dependencies]
+# Web
+axum = { version = "0.8", features = ["macros"] }
+tokio = { version = "1", features = ["full"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "limit"] }
+
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio", "tls-rustls", "postgres", "uuid", "chrono", "json"] }
+
+# Auth
+jsonwebtoken = "9"
+argon2 = "0.5"
+
+# Encryption
+aes-gcm = "0.10"
+hkdf = "0.12"
+sha2 = "0.10"
+hmac = "0.12"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Validation
+validator = { version = "0.20", features = ["derive"] }
+
+# HTTP client
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+
+# Config
+dotenvy = "0.15"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Utils
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+anyhow = "1"
+base64 = "0.22"
+url = "2"
+rand = "0.9"
+
+# Concurrency
+dashmap = "6"
+
+# Async
+tokio-util = "0.7"
+regex-lite = "0.1.9"
+utoipa = { version = "5.4.0", features = ["axum_extras", "uuid", "chrono"] }
+utoipa-swagger-ui = { version = "9.0.2", features = ["axum"] }
+urlencoding = "2.1.3"
+
+[dev-dependencies]
+http-body-util = "0.1.3"
+serial_test = "3"

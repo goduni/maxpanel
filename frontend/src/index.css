@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Geist Sans";
+  src: url("/fonts/GeistVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+@theme inline {
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+ * Theme colors use oklch for better perceptual uniformity.
+ *
+ * Light theme (default)
+ * Warm off-white base with emerald accent
+ */
+:root {
+  --background: oklch(0.97 0.005 250);
+  --foreground: oklch(0.15 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 250);
+  --primary: oklch(0.55 0.17 165);
+  --primary-foreground: oklch(0.98 0.005 165);
+  --secondary: oklch(0.93 0.005 250);
+  --secondary-foreground: oklch(0.2 0.02 250);
+  --muted: oklch(0.93 0.005 250);
+  --muted-foreground: oklch(0.5 0.01 250);
+  --accent: oklch(0.93 0.005 250);
+  --accent-foreground: oklch(0.2 0.02 250);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 25);
+  --border: oklch(0.9 0.005 250);
+  --input: oklch(0.9 0.005 250);
+  --ring: oklch(0.55 0.17 165);
+  --sidebar-background: oklch(0.96 0.005 250);
+  --sidebar-foreground: oklch(0.3 0.02 250);
+  --sidebar-border: oklch(0.9 0.005 250);
+  --sidebar-accent: oklch(0.93 0.01 165);
+  --sidebar-accent-foreground: oklch(0.2 0.02 250);
+  --sidebar-ring: oklch(0.55 0.17 165);
+}
+
+/*
+ * Dark theme
+ * Deep blue-gray base with bright emerald accent
+ */
+.dark {
+  --background: oklch(0.14 0.015 250);
+  --foreground: oklch(0.93 0.005 250);
+  --card: oklch(0.18 0.015 250);
+  --card-foreground: oklch(0.93 0.005 250);
+  --popover: oklch(0.18 0.015 250);
+  --popover-foreground: oklch(0.93 0.005 250);
+  --primary: oklch(0.7 0.17 165);
+  --primary-foreground: oklch(0.14 0.015 250);
+  --secondary: oklch(0.22 0.015 250);
+  --secondary-foreground: oklch(0.9 0.005 250);
+  --muted: oklch(0.22 0.015 250);
+  --muted-foreground: oklch(0.55 0.01 250);
+  --accent: oklch(0.22 0.015 250);
+  --accent-foreground: oklch(0.9 0.005 250);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 25);
+  --border: oklch(0.25 0.015 250);
+  --input: oklch(0.25 0.015 250);
+  --ring: oklch(0.7 0.17 165);
+  --sidebar-background: oklch(0.12 0.015 250);
+  --sidebar-foreground: oklch(0.85 0.005 250);
+  --sidebar-border: oklch(0.22 0.015 250);
+  --sidebar-accent: oklch(0.2 0.02 165);
+  --sidebar-accent-foreground: oklch(0.9 0.005 250);
+  --sidebar-ring: oklch(0.7 0.17 165);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .safe-x {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+}
+
+/* Touch feedback for mobile — buttons get active state */
+@media (hover: none) {
+  button:active,
+  [role="button"]:active,
+  a:active {
+    opacity: 0.7;
+    transition: opacity 0.1s;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

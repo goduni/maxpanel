@@ -1,0 +1,140 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO bots (project_id, name, access_token_enc, access_token_nonce, event_mode,\n                             webhook_secret, webhook_url, max_bot_id, max_bot_info)\n           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)\n           RETURNING id, project_id, name, access_token_enc, access_token_nonce,\n                     key_version, event_mode as \"event_mode: EventMode\",\n                     webhook_secret, webhook_url, polling_marker, is_active,\n                     history_limit, max_bot_id, max_bot_info, created_at, updated_at",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "project_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 2,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "access_token_enc",
+        "type_info": "Bytea"
+      },
+      {
+        "ordinal": 4,
+        "name": "access_token_nonce",
+        "type_info": "Bytea"
+      },
+      {
+        "ordinal": 5,
+        "name": "key_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "event_mode: EventMode",
+        "type_info": {
+          "Custom": {
+            "name": "event_mode",
+            "kind": {
+              "Enum": [
+                "webhook",
+                "polling"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 7,
+        "name": "webhook_secret",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 8,
+        "name": "webhook_url",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 9,
+        "name": "polling_marker",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 10,
+        "name": "is_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 11,
+        "name": "history_limit",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 12,
+        "name": "max_bot_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 13,
+        "name": "max_bot_info",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 14,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 15,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Text",
+        "Bytea",
+        "Bytea",
+        {
+          "Custom": {
+            "name": "event_mode",
+            "kind": {
+              "Enum": [
+                "webhook",
+                "polling"
+              ]
+            }
+          }
+        },
+        "Uuid",
+        "Text",
+        "Int8",
+        "Jsonb"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "6cdd1cd066646f8c99d4652501e2e754a7aa2eba41f804b0d91ea694a5a95f38"
+}
